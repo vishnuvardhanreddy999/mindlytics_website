@@ -348,7 +348,7 @@ footer{background:var(--ink);padding:4rem 4rem 0}
   display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
   padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.08);
 }
-.ft-brand img{height:34px;width:auto;margin-bottom:1rem;filter:brightness(0) invert(1)}
+.ft-brand img{height:34px;width:auto;margin-bottom:1rem;border-radius:6px;}
 .ft-tag{font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.65;max-width:220px;font-weight:300;font-style:italic}
 .ft-col h4{font-family:var(--fh);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1rem}
 .ft-col ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
@@ -675,18 +675,7 @@ footer{background:var(--ink);padding:4rem 4rem 0}
       <h2 class="ci-h2">We'd love to hear from you</h2>
       <p class="ci-p">Whether you're a startup setting up your first data pipeline or an enterprise modernizing your analytics stack — we're here to help. Reach out and we'll respond within 24 hours.</p>
       <div class="ci-list">
-       <div class="ci-item">
-  <div class="ci-ico">📧</div>
-  <div>
-    <div class="ci-lbl">Email</div>
-    <div class="ci-val">
-      <a href="mailto:info.mindlytics@gmail.com">
-        info.mindlytics@gmail.com
-      </a>
-      <span class="ph"></span>
-    </div>
-  </div>
-</div>
+        <div class="ci-item"><div class="ci-ico">📧</div><div><div class="ci-lbl">Email</div><div class="ci-val"><a href="/cdn-cgi/l/email-protection#076f626b6b68476a6e69636b7e736e6474296e68"><span class="__cf_email__" data-cfemail="9cf4f9f0f0f3dcf1f5f2f8f0e5e8f5ffefb2f5f3">[email&#160;protected]</span></a><span class="ph"></span></div></div></div>
         <div class="ci-item"><div class="ci-ico">📞</div><div><div class="ci-lbl">Phone</div><div class="ci-val">+91 90595 68379<span class="ph"></span></div></div></div>
         <div class="ci-item"><div class="ci-ico">📍</div><div><div class="ci-lbl">Location</div><div class="ci-val">Hyderabad, India<span class="ph"></span></div></div></div>
         <div class="ci-item"><div class="ci-ico">💼</div><div><div class="ci-lbl">LinkedIn</div><div class="ci-val"><a href="https://www.linkedin.com/company/mindlyticstech/" target="_blank">linkedin.com/company/mindlyticstech</a><span class="ph"></span></div></div></div>
@@ -697,13 +686,13 @@ footer{background:var(--ink);padding:4rem 4rem 0}
       <div class="cf-title">Send us a message</div>
       <div class="cf-sub">Fill out the form and we'll get back to you within one business day.</div>
       <div class="f-row">
-        <div class="f-group"><label>First Name</label><input type="text" placeholder="Your first name"/></div>
-        <div class="f-group"><label>Last Name</label><input type="text" placeholder="Your last name"/></div>
+        <div class="f-group"><label>First Name</label><input id="ml-firstname" type="text" placeholder="Your first name"/></div>
+        <div class="f-group"><label>Last Name</label><input id="ml-lastname" type="text" placeholder="Your last name"/></div>
       </div>
-      <div class="f-group"><label>Work Email</label><input type="email" placeholder="you@company.com"/></div>
-      <div class="f-group"><label>Company</label><input type="text" placeholder="Your company name"/></div>
+      <div class="f-group"><label>Work Email</label><input id="ml-email" type="email" placeholder="you@company.com"/></div>
+      <div class="f-group"><label>Company</label><input id="ml-company" type="text" placeholder="Your company name"/></div>
       <div class="f-group"><label>What can we help you with?</label>
-        <select>
+        <select id="ml-service">
           <option value="">Select a service...</option>
           <option>Data Engineering & ETL Pipelines</option>
           <option>Cloud Data Platform</option>
@@ -713,8 +702,10 @@ footer{background:var(--ink);padding:4rem 4rem 0}
           <option>Something else</option>
         </select>
       </div>
-      <div class="f-group"><label>Message</label><textarea placeholder="Tell us about your data challenges or what you're looking to achieve..."></textarea></div>
-      <button class="f-submit">Send Message →</button>
+      <div class="f-group"><label>Message</label><textarea id="ml-message" placeholder="Tell us about your data challenges or what you're looking to achieve..."></textarea></div>
+      <button class="f-submit" onclick="sendEmail()">Send Message →</button>
+      <div id="ml-status" style="font-size:0.82rem;text-align:center;margin-top:0.75rem;min-height:1.2rem;font-weight:500"></div>
+      <p class="f-note">We typically respond within 24 hours on business days.</p>
       <p class="f-note">We typically respond within 24 hours on business days.</p>
     </div>
   </section>
@@ -729,6 +720,8 @@ footer{background:var(--ink);padding:4rem 4rem 0}
     <div class="ft-bottom"><span class="ft-copy">© 2026 MindLytics. All rights reserved.</span><span class="ft-miss">Raw Data. Real Business Value.</span></div>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="emailjs.js"></script>
 <script>
 function go(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
