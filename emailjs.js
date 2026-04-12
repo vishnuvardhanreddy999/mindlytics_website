@@ -16,9 +16,9 @@
 //  5. Replace the three placeholder values below with your real ones
 // ============================================================
 
-var EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";   // e.g. "abc123XYZdef"
-var EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";   // e.g. "service_xxxxxx"
-var EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";  // e.g. "template_xxxxxx"
+var EMAILJS_PUBLIC_KEY  = "MQQickSrryie1zmGO";   // e.g. "abc123XYZdef"
+var EMAILJS_SERVICE_ID  = "service_vvwrr1s";   // e.g. "service_xxxxxx"
+var EMAILJS_TEMPLATE_ID = "template_o9liptc";  // e.g. "template_xxxxxx"
 
 // Initialise EmailJS with your public key
 (function () {
