@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MindLytics — Driven by Mind. Proven by Data.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1B4FD8;
+  --blue-dark:#1240B8;
+  --blue-deeper:#0D2F8A;
+  --blue-light:#2E64F0;
+  --blue-pale:#E8EFFE;
+  --blue-subtle:#F0F4FF;
+  --white:#ffffff;
+  --ink:#0A1628;
+  --ink2:#1E2D4A;
+  --ink3:#4A5A7A;
+  --ink4:#8A96B0;
+  --border:#E2E8F8;
+  --border2:#C8D4F0;
+  --surface:#F7F9FF;
+  --fh:'Inter',sans-serif;
+  --fb:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--white);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+.page{display:none;min-height:100vh;flex-direction:column}
+.page.active{display:flex}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:300;
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:0 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+  height:72px;
+}
+.nav-logo{display:flex;align-items:center;cursor:pointer;text-decoration:none}
+.nav-logo img{height:38px;width:auto;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:0.25rem;list-style:none}
+.nav-links li a{
+  font-family:var(--fb);font-size:0.88rem;font-weight:500;
+  color:var(--ink3);text-decoration:none;
+  padding:0.5rem 1rem;border-radius:8px;
+  transition:all 0.18s;letter-spacing:0.01em;cursor:pointer;
+}
+.nav-links li a:hover,.nav-links li a.active{color:var(--blue);background:var(--blue-subtle)}
+.nav-cta{
+  font-family:var(--fb);font-size:0.88rem;font-weight:600;
+  background:var(--blue);color:var(--white);
+  padding:0.6rem 1.5rem;border-radius:8px;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:all 0.18s;
+}
+.nav-cta:hover{background:var(--blue-dark);box-shadow:0 4px 20px rgba(27,79,216,0.3)}
+
+/* HERO */
+.hero{
+  background:var(--ink);position:relative;overflow:hidden;
+  padding:7rem 4rem 6rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;flex:1;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 70% 50%,rgba(27,79,216,0.25) 0%,transparent 55%),
+    radial-gradient(circle at 10% 80%,rgba(27,79,216,0.1) 0%,transparent 45%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+  background-size:48px 48px;pointer-events:none;
+}
+.hero-left{position:relative;z-index:1}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);
+  border-radius:100px;padding:0.38rem 1rem;
+  font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(255,255,255,0.7);margin-bottom:1.75rem;
+  animation:fadeUp 0.5s ease both;
+}
+.e-dot{width:6px;height:6px;border-radius:50%;background:var(--blue-light);box-shadow:0 0 8px var(--blue-light);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.35}}
+.hero h1{
+  font-family:var(--fh);font-size:clamp(3.2rem,5.5vw,5.8rem);font-weight:800;
+  line-height:0.92;letter-spacing:-0.02em;color:var(--white);margin-bottom:1.5rem;
+  animation:fadeUp 0.5s 0.1s ease both;
+}
+.hero h1 em{display:block;font-style:normal;color:var(--blue-light)}
+.hero-sub{
+  font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.6);
+  line-height:1.8;max-width:460px;margin-bottom:2.5rem;
+  animation:fadeUp 0.5s 0.2s ease both;
+}
+.hero-sub strong{color:rgba(255,255,255,0.9);font-weight:500}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.5s 0.3s ease both}
+.btn-hp{
+  font-family:var(--fb);font-weight:700;font-size:0.92rem;
+  background:var(--blue);color:var(--white);padding:0.85rem 2rem;border-radius:9px;
+  text-decoration:none;cursor:pointer;border:none;transition:all 0.2s;
+}
+.btn-hp:hover{background:var(--blue-light);box-shadow:0 6px 28px rgba(27,79,216,0.45);transform:translateY(-1px)}
+.btn-hg{
+  font-family:var(--fb);font-weight:500;font-size:0.92rem;
+  border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.85);
+  padding:0.85rem 2rem;border-radius:9px;text-decoration:none;cursor:pointer;transition:all 0.2s;
+}
+.btn-hg:hover{border-color:rgba(255,255,255,0.5);color:var(--white)}
+.hero-right{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+  animation:fadeUp 0.5s 0.35s ease both;
+}
+.hs{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;padding:1.5rem 1.25rem;backdrop-filter:blur(10px);
+}
+.hs:first-child{grid-column:1/-1}
+.hs-label{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;font-weight:600}
+.hs-val{font-family:var(--fh);font-size:2.2rem;font-weight:800;color:var(--white);letter-spacing:-0.03em;line-height:1}
+.hs-note{font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:0.3rem}
+.hs-bar{margin-top:0.85rem;height:3px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden}
+.hs-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--blue),var(--blue-light))}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* TRUSTED */
+.trusted{
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:1.5rem 4rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;
+}
+.t-label{font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink4);white-space:nowrap}
+.t-logos{display:flex;gap:2.5rem;flex-wrap:wrap;align-items:center;flex:1}
+.t-logo{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:var(--ink4);letter-spacing:0.04em;text-transform:uppercase;opacity:0.45}
+
+/* HIGHLIGHTS */
+.highlights{padding:6rem 4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.hl{
+  padding:2.25rem 2rem;border-radius:16px;border:1px solid var(--border);
+  transition:all 0.22s;position:relative;overflow:hidden;
+}
+.hl::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--blue-light));opacity:0;transition:opacity 0.22s;
+}
+.hl:hover{border-color:var(--blue);transform:translateY(-4px);box-shadow:0 12px 40px rgba(27,79,216,0.1)}
+.hl:hover::before{opacity:1}
+.hl-icon{
+  width:48px;height:48px;border-radius:12px;background:var(--blue-subtle);
+  display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:1.25rem;
+}
+.hl-title{font-family:var(--fh);font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:0.6rem;letter-spacing:-0.01em}
+.hl-desc{font-size:0.875rem;color:var(--ink3);line-height:1.72}
+
+/* MISSION BAND */
+.mission{
+  background:var(--blue);padding:5rem 4rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+}
+.m-tag{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55);font-weight:600;margin-bottom:0.75rem}
+.m-h2{font-family:var(--fh);font-size:clamp(2rem,3vw,2.8rem);font-weight:800;line-height:1.0;letter-spacing:-0.03em;color:var(--white);margin-bottom:1rem}
+.m-p{font-size:0.95rem;color:rgba(255,255,255,0.65);font-weight:300;line-height:1.8;margin-bottom:1.75rem}
+.m-btn{
+  display:inline-block;font-family:var(--fb);font-weight:700;font-size:0.88rem;
+  background:var(--white);color:var(--blue);padding:0.8rem 1.75rem;border-radius:9px;
+  text-decoration:none;cursor:pointer;transition:all 0.18s;
+}
+.m-btn:hover{background:var(--blue-pale);transform:translateY(-1px)}
+.m-pills{display:flex;flex-direction:column;gap:1rem}
+.m-pill{
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);
+  border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;
+}
+.mp-icon{font-size:1.25rem}
+.mp-title{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:var(--white);letter-spacing:-0.01em}
+.mp-desc{font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:0.1rem;font-weight:300}
+
+/* STATS */
+.stats{
+  padding:5rem 4rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border-bottom:1px solid var(--border);
+}
+.sc{padding:0 2.5rem;border-left:1px solid var(--border)}
+.sc:first-child{padding-left:0;border-left:none}
+.sc-num{font-family:var(--fh);font-size:3rem;font-weight:800;letter-spacing:-0.04em;color:var(--blue);line-height:1;margin-bottom:0.3rem}
+.sc-label{font-size:0.83rem;color:var(--ink3);line-height:1.5}
+
+/* ---- ABOUT PAGE ---- */
+.page-hero{
+  background:var(--ink);padding:7rem 4rem 5rem;
+  position:relative;overflow:hidden;
+}
+.page-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 50%,rgba(27,79,216,0.2),transparent 60%);
+  pointer-events:none;
+}
+.ph-inner{position:relative;z-index:1;max-width:700px}
+.ph-tag{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-light);font-weight:600;margin-bottom:1rem}
+.ph-h1{font-family:var(--fh);font-size:clamp(2.8rem,5vw,5rem);font-weight:800;line-height:0.95;letter-spacing:-0.03em;color:var(--white);margin-bottom:1.25rem}
+.ph-lead{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.6);line-height:1.8;max-width:560px}
+
+.about-body{padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.ab-copy h2{font-family:var(--fh);font-size:2rem;font-weight:800;color:var(--ink);letter-spacing:-0.03em;line-height:1.05;margin-bottom:1.25rem}
+.ab-copy h2 span{color:var(--blue)}
+.ab-copy p{font-size:0.93rem;color:var(--ink3);line-height:1.82;margin-bottom:1.25rem}
+.ab-copy p:last-child{margin-bottom:0}
+.ab-vals{display:flex;flex-direction:column;gap:1rem}
+.av{
+  display:flex;gap:1rem;align-items:flex-start;padding:1.25rem 1.5rem;
+  border-radius:12px;border:1px solid var(--border);background:var(--surface);transition:border-color 0.2s;
+}
+.av:hover{border-color:var(--border2)}
+.av-dot{
+  width:36px;height:36px;border-radius:9px;flex-shrink:0;
+  background:var(--blue-subtle);display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.av-title{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:0.25rem;letter-spacing:-0.01em}
+.av-desc{font-size:0.82rem;color:var(--ink3);line-height:1.6}
+
+.team-section{background:var(--surface);border-top:1px solid var(--border);padding:5rem 4rem;text-align:center}
+.ts-h2{font-family:var(--fh);font-size:2rem;font-weight:800;color:var(--ink);letter-spacing:-0.03em;margin-bottom:0.75rem}
+.ts-p{font-size:0.9rem;color:var(--ink3);max-width:480px;margin:0 auto 3rem;line-height:1.75;font-weight:300}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:750px;margin:0 auto}
+.tc{
+  background:var(--white);border:1px solid var(--border);border-radius:14px;
+  padding:1.75rem 1.25rem;text-align:center;transition:all 0.2s;
+}
+.tc:hover{border-color:var(--blue);box-shadow:0 8px 32px rgba(27,79,216,0.1);transform:translateY(-3px)}
+.tc-av{
+  width:64px;height:64px;border-radius:50%;margin:0 auto 1rem;
+  background:linear-gradient(135deg,var(--blue),var(--blue-light));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-size:1.15rem;font-weight:800;color:var(--white);
+}
+.tc-name{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:0.2rem;letter-spacing:-0.01em}
+.tc-role{font-size:0.75rem;color:var(--ink4)}
+
+/* ---- SERVICES PAGE ---- */
+.svc-page-hero::before{background:radial-gradient(ellipse at 20% 60%,rgba(27,79,216,0.22),transparent 55%)}
+.svc-main{padding:6rem 4rem}
+.svc-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;margin-bottom:4rem}
+.si-h2{font-family:var(--fh);font-size:2.2rem;font-weight:800;color:var(--ink);letter-spacing:-0.03em;line-height:1.0;margin-bottom:0.75rem}
+.si-h2 span{color:var(--blue)}
+.si-p{font-size:0.9rem;color:var(--ink3);line-height:1.8}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:5rem}
+.sg{
+  background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:2.25rem 2rem;transition:all 0.22s;position:relative;overflow:hidden;
+}
+.sg::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--blue-light));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.25s;
+}
+.sg:hover{border-color:var(--blue-pale);box-shadow:0 12px 48px rgba(27,79,216,0.1);transform:translateY(-5px)}
+.sg:hover::after{transform:scaleX(1)}
+.sg-num{font-family:var(--fh);font-size:0.72rem;font-weight:800;letter-spacing:0.1em;color:var(--blue);margin-bottom:1rem;text-transform:uppercase}
+.sg-icon{font-size:1.5rem;margin-bottom:1rem}
+.sg-title{font-family:var(--fh);font-size:1.1rem;font-weight:800;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.6rem}
+.sg-desc{font-size:0.855rem;color:var(--ink3);line-height:1.72;margin-bottom:1.25rem}
+.sg-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.sg-tag{
+  font-size:0.68rem;font-weight:600;letter-spacing:0.05em;
+  background:var(--blue-subtle);color:var(--blue);padding:0.22rem 0.65rem;border-radius:100px;
+}
+.process-band{background:var(--surface);border-top:1px solid var(--border);padding:5rem 4rem}
+.pb-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem}
+.pb-h2{font-family:var(--fh);font-size:2rem;font-weight:800;color:var(--ink);letter-spacing:-0.03em}
+.pb-p{font-size:0.88rem;color:var(--ink3);max-width:300px;line-height:1.65;font-weight:300}
+.proc-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.proc-steps::before{
+  content:'';position:absolute;top:28px;left:7%;right:7%;height:1px;
+  background:linear-gradient(90deg,var(--blue),var(--blue-light));opacity:0.25;
+}
+.ps{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 0.75rem;position:relative;z-index:1}
+.ps-node{
+  width:56px;height:56px;border-radius:50%;
+  border:2px solid var(--border2);background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;margin-bottom:1rem;transition:all 0.2s;position:relative;
+}
+.ps:hover .ps-node{border-color:var(--blue);box-shadow:0 0 20px rgba(27,79,216,0.2)}
+.ps-n{
+  position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;
+  background:var(--blue);font-size:0.6rem;font-weight:800;color:var(--white);
+  display:flex;align-items:center;justify-content:center;font-family:var(--fh);
+}
+.ps-title{font-family:var(--fh);font-size:0.82rem;font-weight:700;color:var(--ink);margin-bottom:0.35rem;letter-spacing:-0.01em}
+.ps-desc{font-size:0.74rem;color:var(--ink3);line-height:1.55}
+
+/* ---- CONTACT PAGE ---- */
+.contact-page-hero::before{background:radial-gradient(ellipse at 60% 40%,rgba(27,79,216,0.25),transparent 60%)}
+.contact-body{padding:6rem 4rem;display:grid;grid-template-columns:1fr 1.2fr;gap:5rem}
+.ci-h2{font-family:var(--fh);font-size:1.8rem;font-weight:800;color:var(--ink);letter-spacing:-0.03em;margin-bottom:0.75rem}
+.ci-p{font-size:0.9rem;color:var(--ink3);line-height:1.8;font-weight:300;margin-bottom:2.5rem}
+.ci-list{display:flex;flex-direction:column;gap:1rem}
+.ci-item{
+  display:flex;align-items:flex-start;gap:1rem;padding:1.25rem 1.5rem;
+  border-radius:12px;border:1px solid var(--border);background:var(--surface);
+}
+.ci-ico{
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  background:var(--blue-subtle);display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.ci-lbl{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink4);margin-bottom:0.2rem}
+.ci-val{font-size:0.88rem;color:var(--ink2);font-weight:500}
+.ci-val a{color:var(--blue);text-decoration:none}
+.ph{color:var(--ink4);font-size:0.75rem;font-style:italic;margin-left:0.3rem}
+.cf-wrap{
+  background:var(--white);border:1px solid var(--border);border-radius:20px;
+  padding:2.5rem;box-shadow:0 8px 48px rgba(27,79,216,0.07);
+}
+.cf-title{font-family:var(--fh);font-size:1.3rem;font-weight:800;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.4rem}
+.cf-sub{font-size:0.83rem;color:var(--ink3);margin-bottom:2rem;font-weight:300}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.f-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem}
+.f-group label{font-size:0.78rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink3)}
+.f-group input,.f-group textarea,.f-group select{
+  font-family:var(--fb);font-size:0.88rem;padding:0.75rem 1rem;border-radius:9px;
+  border:1px solid var(--border2);background:var(--surface);color:var(--ink);
+  outline:none;transition:border-color 0.18s,box-shadow 0.18s;width:100%;
+}
+.f-group input:focus,.f-group textarea:focus,.f-group select:focus{
+  border-color:var(--blue);box-shadow:0 0 0 3px rgba(27,79,216,0.1);background:var(--white);
+}
+.f-group textarea{resize:vertical;min-height:110px;line-height:1.6}
+.f-submit{
+  width:100%;padding:0.9rem;border-radius:9px;background:var(--blue);color:var(--white);
+  font-family:var(--fh);font-weight:800;font-size:1rem;letter-spacing:0.02em;
+  border:none;cursor:pointer;transition:all 0.2s;margin-top:0.5rem;
+}
+.f-submit:hover{background:var(--blue-dark);box-shadow:0 6px 28px rgba(27,79,216,0.35);transform:translateY(-1px)}
+.f-note{font-size:0.73rem;color:var(--ink4);text-align:center;margin-top:0.75rem;font-weight:300}
+
+/* FOOTER */
+footer{background:var(--ink);padding:4rem 4rem 0}
+.ft-main{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
+  padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.ft-brand img{height:34px;width:auto;margin-bottom:1rem;filter:brightness(0) invert(1)}
+.ft-tag{font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.65;max-width:220px;font-weight:300;font-style:italic}
+.ft-col h4{font-family:var(--fh);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1rem}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
+.ft-col ul li a{font-size:0.83rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.18s;font-weight:300;cursor:pointer}
+.ft-col ul li a:hover{color:var(--white)}
+.ft-bottom{padding:1.5rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-copy{font-size:0.77rem;color:rgba(255,255,255,0.3)}
+.ft-miss{font-size:0.77rem;color:rgba(255,255,255,0.3);font-style:italic}
+
+/* SECTION TAGS */
+.s-tag{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:0.75rem}
+.text-center{text-align:center}
+.mt-auto{margin-top:auto}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .hero,.mission,.about-body,.svc-intro,.contact-body{grid-template-columns:1fr;gap:2.5rem;padding:5rem 1.5rem}
+  .hero{padding-top:6rem}
+  .hero-right{grid-template-columns:1fr 1fr}
+  .highlights,.svc-grid{grid-template-columns:1fr;padding:4rem 1.5rem}
+  .svc-main,.process-band,.team-section,.stats{padding:4rem 1.5rem}
+  .stats{grid-template-columns:1fr 1fr;gap:2rem}
+  .sc{border-left:none;padding-left:0;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+  .proc-steps{grid-template-columns:1fr 1fr;gap:2rem}
+  .proc-steps::before{display:none}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .ft-main{grid-template-columns:1fr 1fr;padding:3rem 0;gap:2rem}
+  footer{padding:3rem 1.5rem 0}
+  .ft-bottom{padding:1.5rem 0}
+  .trusted{padding:1.25rem 1.5rem}
+  .page-hero{padding:6rem 1.5rem 4rem}
+  .cf-wrap{padding:1.75rem}
+  .f-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" onclick="go('home')">
+    <img src="mindlytics-logo.png" alt="MindLytics"/>
+  </a>
+  <ul class="nav-links">
+    <li><a onclick="go('home')" id="nl-home" class="active">Home</a></li>
+    <li><a onclick="go('about')" id="nl-about">About</a></li>
+    <li><a onclick="go('services')" id="nl-services">Services</a></li>
+    <li><a onclick="go('contact')" id="nl-contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="go('contact')">Get in Touch</button>
+</nav>
+
+<!-- ============ HOME ============ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-left">
+      <div class="hero-eyebrow"><span class="e-dot"></span>Next-Generation Data & Analytics</div>
+      <h1>Driven by Mind.<em>Proven by Data.</em></h1>
+      <p class="hero-sub">MindLytics transforms raw, scattered data into <strong>actionable business intelligence</strong> — empowering organizations to move faster and decide smarter.</p>
+      <div class="hero-btns">
+        <button class="btn-hp" onclick="go('services')">Explore Services</button>
+        <button class="btn-hg" onclick="go('contact')">Book a Discovery Call</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hs">
+        <div class="hs-label">Our Mission</div>
+        <div style="font-size:1rem;font-family:var(--fb);font-weight:300;color:rgba(255,255,255,0.65);line-height:1.7;margin-top:0.3rem">Turn <strong style="color:#fff;font-weight:600">Raw Data</strong> into <strong style="color:#fff;font-weight:600">Real Business Value</strong> — reliably, scalably, and fast.</div>
+      </div>
+      <div class="hs">
+        <div class="hs-label">Data Reliability</div>
+        <div class="hs-val">99.9%</div>
+        <div class="hs-note">Pipeline uptime SLA</div>
+        <div class="hs-bar"><div class="hs-fill" style="width:99.9%"></div></div>
+      </div>
+      <div class="hs">
+        <div class="hs-label">Faster Decisions</div>
+        <div class="hs-val">3×</div>
+        <div class="hs-note">Speed gain for clients</div>
+        <div class="hs-bar"><div class="hs-fill" style="width:75%"></div></div>
+      </div>
+      <div class="hs">
+        <div class="hs-label">Clients Served</div>
+        <div class="hs-val">200+</div>
+        <div class="hs-note">Startups to enterprises</div>
+        <div class="hs-bar"><div class="hs-fill" style="width:60%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trusted">
+    <span class="t-label">Trusted by</span>
+    <div class="t-logos">
+      <span class="t-logo">FinCore</span><span class="t-logo">LogiShift</span>
+      <span class="t-logo">Elevate</span><span class="t-logo">DataNova</span>
+      <span class="t-logo">NexaCloud</span><span class="t-logo">PulseBI</span>
+    </div>
+  </div>
+
+  <section class="highlights">
+    <div class="hl">
+      <div class="hl-icon">⚙️</div>
+      <div class="hl-title">Scalable Data Infrastructure</div>
+      <p class="hl-desc">We architect and build robust data pipelines and cloud platforms that grow with your business — from your first data source to petabyte scale, without re-engineering.</p>
+    </div>
+    <div class="hl">
+      <div class="hl-icon">📊</div>
+      <div class="hl-title">Analytics & Intelligence</div>
+      <p class="hl-desc">Advanced analytics, predictive models, and live dashboards that transform your data into decisions. Every visualization is built around the insight that matters most.</p>
+    </div>
+    <div class="hl">
+      <div class="hl-icon">🚀</div>
+      <div class="hl-title">Data-Driven Culture</div>
+      <p class="hl-desc">We don't just deliver dashboards — we transfer knowledge. Your team leaves every engagement equipped to think in data, own their tools, and scale independently.</p>
+    </div>
+  </section>
+
+  <section class="mission">
+    <div>
+      <div class="m-tag">Our Mission</div>
+      <h2 class="m-h2">From raw data to real business value</h2>
+      <p class="m-p">At MindLytics, we believe every organization — regardless of size — deserves access to the kind of intelligence that used to require an army of data scientists. We make that accessible, fast, and built to last.</p>
+      <button class="m-btn" onclick="go('about')">About MindLytics</button>
+    </div>
+    <div class="m-pills">
+      <div class="m-pill"><div class="mp-icon">🏗️</div><div><div class="mp-title">End-to-End Ownership</div><div class="mp-desc">Strategy, architecture, build, and handover — all under one roof</div></div></div>
+      <div class="m-pill"><div class="mp-icon">☁️</div><div><div class="mp-title">Cloud-Native by Design</div><div class="mp-desc">Snowflake, BigQuery, Redshift, Azure — we work with your stack</div></div></div>
+      <div class="m-pill"><div class="mp-icon">🎯</div><div><div class="mp-title">Outcome-First Approach</div><div class="mp-desc">We start with your decisions, then build the data infrastructure backward</div></div></div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="sc"><div class="sc-num">200+</div><div class="sc-label">Projects delivered across startups and enterprises</div></div>
+    <div class="sc"><div class="sc-num">99.9%</div><div class="sc-label">Pipeline uptime SLA across all client platforms</div></div>
+    <div class="sc"><div class="sc-num">3×</div><div class="sc-label">Average improvement in business decision speed</div></div>
+    <div class="sc"><div class="sc-num">48TB</div><div class="sc-label">Data processed monthly across our client base</div></div>
+  </section>
+
+  <footer class="mt-auto">
+    <div class="ft-main">
+      <div class="ft-brand"><img src="mindlytics-logo.png" alt="MindLytics"/><p class="ft-tag">Driven by Mind. Proven by Data.</p></div>
+      <div class="ft-col"><h4>Company</h4><ul><li><a onclick="go('home')">Home</a></li><li><a onclick="go('about')">About</a></li><li><a onclick="go('services')">Services</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div>
+      <div class="ft-col"><h4>Services</h4><ul><li><a onclick="go('services')">Data Engineering</a></li><li><a onclick="go('services')">BI & Dashboards</a></li><li><a onclick="go('services')">Cloud Platforms</a></li><li><a onclick="go('services')">Advanced Analytics</a></li></ul></div>
+      <div class="ft-col"><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a onclick="go('contact')">Get in Touch</a></li></ul></div>
+    </div>
+    <div class="ft-bottom"><span class="ft-copy">© 2026 MindLytics. All rights reserved.</span><span class="ft-miss">Raw Data. Real Business Value.</span></div>
+  </footer>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<div class="page" id="page-about">
+  <section class="page-hero">
+    <div class="ph-inner">
+      <div class="ph-tag">About MindLytics</div>
+      <h1 class="ph-h1">A company built to make data work for everyone</h1>
+      <p class="ph-lead">We are a next-generation data and analytics company helping businesses at every stage transform raw information into a genuine competitive edge.</p>
+    </div>
+  </section>
+
+  <section class="about-body">
+    <div class="ab-copy">
+      <h2>We believe <span>every organization</span> deserves world-class data intelligence</h2>
+      <p>MindLytics was founded on a straightforward conviction: the tools and expertise needed to make data-driven decisions shouldn't be reserved for large corporations with massive data teams. From early-stage startups to growing enterprises, every organization generates data — and every organization deserves to understand it.</p>
+      <p>We specialize in building scalable data infrastructure, advanced analytics solutions, and modern visualization platforms. Our end-to-end approach covers everything from raw data ingestion and ETL pipeline development to cloud-based warehousing, business intelligence dashboards, and predictive analytics — all aligned to the business decisions your team actually needs to make.</p>
+      <p>Our mission is simple: turn Raw Data into Real Business Value. We do this not by delivering reports, but by embedding intelligence into your operations — building data pipelines that run reliably, dashboards that get used daily, and architectures that scale as you do.</p>
+    </div>
+    <div>
+      <div class="s-tag">Our Values</div>
+      <div class="ab-vals">
+        <div class="av"><div class="av-dot">🎯</div><div><div class="av-title">Outcome-First Thinking</div><p class="av-desc">Every pipeline and dashboard we build exists to drive a specific, measurable business outcome. We start with the decision, then build backward.</p></div></div>
+        <div class="av"><div class="av-dot">🔒</div><div><div class="av-title">Trust Through Reliability</div><p class="av-desc">Data your team doesn't trust is data that doesn't get used. Quality, lineage, and governance are embedded into everything we touch.</p></div></div>
+        <div class="av"><div class="av-dot">🤝</div><div><div class="av-title">Enable, Don't Depend</div><p class="av-desc">We transfer knowledge in every engagement. Our goal is to leave your team more capable than when we arrived.</p></div></div>
+        <div class="av"><div class="av-dot">⚡</div><div><div class="av-title">Speed to Value</div><p class="av-desc">Sprint-based delivery means you see working outputs in weeks — no year-long engagements, no black boxes.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <div class="s-tag text-center">Our Team</div>
+    <h2 class="ts-h2">The minds behind MindLytics</h2>
+    <p class="ts-p">A focused team of data engineers, analytics architects, and BI specialists — united by one goal: turning your data into decisions.</p>
+    <div class="team-grid">
+      <div class="tc"><div class="tc-av">RM</div><div class="tc-name">Ravi Mehta</div><div class="tc-role">Founder & CEO</div></div>
+      <div class="tc"><div class="tc-av">SK</div><div class="tc-name">Shruti Kapoor</div><div class="tc-role">Head of Data Engineering</div></div>
+      <div class="tc"><div class="tc-av">AJ</div><div class="tc-name">Arjun Joshi</div><div class="tc-role">Lead Analytics Architect</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="ft-main">
+      <div class="ft-brand"><img src="mindlytics-logo.png" alt="MindLytics"/><p class="ft-tag">Driven by Mind. Proven by Data.</p></div>
+      <div class="ft-col"><h4>Company</h4><ul><li><a onclick="go('home')">Home</a></li><li><a onclick="go('about')">About</a></li><li><a onclick="go('services')">Services</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div>
+      <div class="ft-col"><h4>Services</h4><ul><li><a onclick="go('services')">Data Engineering</a></li><li><a onclick="go('services')">BI & Dashboards</a></li><li><a onclick="go('services')">Cloud Platforms</a></li><li><a onclick="go('services')">Advanced Analytics</a></li></ul></div>
+      <div class="ft-col"><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a onclick="go('contact')">Get in Touch</a></li></ul></div>
+    </div>
+    <div class="ft-bottom"><span class="ft-copy">© 2026 MindLytics. All rights reserved.</span><span class="ft-miss">Raw Data. Real Business Value.</span></div>
+  </footer>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<div class="page" id="page-services">
+  <section class="page-hero svc-page-hero">
+    <div class="ph-inner">
+      <div class="ph-tag">Our Services</div>
+      <h1 class="ph-h1">Analytics & Data-Driven Solutions, end to end</h1>
+      <p class="ph-lead">From your first data pipeline to a fully automated intelligence platform — we cover every layer of the modern data stack, tailored to your business.</p>
+    </div>
+  </section>
+
+  <section class="svc-main">
+    <div class="svc-intro">
+      <div><div class="s-tag">What we deliver</div><h2 class="si-h2">Solutions built around <span>your decisions</span></h2></div>
+      <div><p class="si-p">Every service we offer is designed to solve a real business problem. We work with your existing stack or recommend the best tools for your scale and budget — no vendor lock-in.</p></div>
+    </div>
+    <div class="svc-grid">
+      <div class="sg"><div class="sg-num">01</div><div class="sg-icon">⚙️</div><div class="sg-title">Data Engineering & ETL Pipelines</div><p class="sg-desc">Reliable, automated pipelines that ingest, transform, and load your data with full observability. No more broken exports or manual refreshes.</p><div class="sg-tags"><span class="sg-tag">Apache Spark</span><span class="sg-tag">dbt</span><span class="sg-tag">Airflow</span><span class="sg-tag">Kafka</span></div></div>
+      <div class="sg"><div class="sg-num">02</div><div class="sg-icon">☁️</div><div class="sg-title">Cloud Data Platforms</div><p class="sg-desc">Modern data warehouse and lakehouse architectures on Snowflake, BigQuery, or Redshift — scalable from your first 10GB to multiple terabytes.</p><div class="sg-tags"><span class="sg-tag">Snowflake</span><span class="sg-tag">BigQuery</span><span class="sg-tag">Redshift</span><span class="sg-tag">Azure</span></div></div>
+      <div class="sg"><div class="sg-num">03</div><div class="sg-icon">📊</div><div class="sg-title">Business Intelligence & Dashboards</div><p class="sg-desc">From C-suite KPI boards to operational drill-downs — live, self-refreshing dashboards tailored to how your team actually makes decisions.</p><div class="sg-tags"><span class="sg-tag">Power BI</span><span class="sg-tag">Tableau</span><span class="sg-tag">Looker</span><span class="sg-tag">Metabase</span></div></div>
+      <div class="sg"><div class="sg-num">04</div><div class="sg-icon">🧠</div><div class="sg-title">Advanced Analytics & Predictive Models</div><p class="sg-desc">Customer segmentation, churn prediction, demand forecasting, and ML-powered insights embedded directly into your reporting workflows.</p><div class="sg-tags"><span class="sg-tag">Python</span><span class="sg-tag">ML Models</span><span class="sg-tag">Forecasting</span></div></div>
+      <div class="sg"><div class="sg-num">05</div><div class="sg-icon">🔗</div><div class="sg-title">Data Integration & Unification</div><p class="sg-desc">Connect every source — CRMs, ERPs, marketing tools, APIs — into a single, governed, trustworthy data layer your entire organization can rely on.</p><div class="sg-tags"><span class="sg-tag">Fivetran</span><span class="sg-tag">Airbyte</span><span class="sg-tag">APIs</span><span class="sg-tag">SQL</span></div></div>
+      <div class="sg"><div class="sg-num">06</div><div class="sg-icon">🏛️</div><div class="sg-title">Data Strategy & Governance</div><p class="sg-desc">Data cataloguing, lineage tracking, quality frameworks, and access control that scale with your team and satisfy compliance requirements.</p><div class="sg-tags"><span class="sg-tag">Data Catalog</span><span class="sg-tag">Lineage</span><span class="sg-tag">Governance</span></div></div>
+    </div>
+  </section>
+
+  <section class="process-band">
+    <div class="pb-head">
+      <div><div class="s-tag">How It Works</div><h2 class="pb-h2">From raw data to live intelligence</h2></div>
+      <p class="pb-p">Our sprint-based process delivers working outputs in weeks — not months.</p>
+    </div>
+    <div class="proc-steps">
+      <div class="ps"><div class="ps-node"><span class="ps-n">1</span>🔍</div><div class="ps-title">Discovery</div><p class="ps-desc">We audit your sources, gaps, and decision workflows</p></div>
+      <div class="ps"><div class="ps-node"><span class="ps-n">2</span>🏗️</div><div class="ps-title">Architecture</div><p class="ps-desc">We design your cloud platform and data model</p></div>
+      <div class="ps"><div class="ps-node"><span class="ps-n">3</span>⚡</div><div class="ps-title">Build & Automate</div><p class="ps-desc">ETL pipelines go live, monitored and documented</p></div>
+      <div class="ps"><div class="ps-node"><span class="ps-n">4</span>📈</div><div class="ps-title">Visualize</div><p class="ps-desc">Dashboards built on clean data from day one</p></div>
+      <div class="ps"><div class="ps-node"><span class="ps-n">5</span>🚀</div><div class="ps-title">Handover & Scale</div><p class="ps-desc">Full docs, training, and ongoing support</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="ft-main">
+      <div class="ft-brand"><img src="mindlytics-logo.png" alt="MindLytics"/><p class="ft-tag">Driven by Mind. Proven by Data.</p></div>
+      <div class="ft-col"><h4>Company</h4><ul><li><a onclick="go('home')">Home</a></li><li><a onclick="go('about')">About</a></li><li><a onclick="go('services')">Services</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div>
+      <div class="ft-col"><h4>Services</h4><ul><li><a onclick="go('services')">Data Engineering</a></li><li><a onclick="go('services')">BI & Dashboards</a></li><li><a onclick="go('services')">Cloud Platforms</a></li><li><a onclick="go('services')">Advanced Analytics</a></li></ul></div>
+      <div class="ft-col"><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a onclick="go('contact')">Get in Touch</a></li></ul></div>
+    </div>
+    <div class="ft-bottom"><span class="ft-copy">© 2026 MindLytics. All rights reserved.</span><span class="ft-miss">Raw Data. Real Business Value.</span></div>
+  </footer>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div class="page" id="page-contact">
+  <section class="page-hero contact-page-hero">
+    <div class="ph-inner">
+      <div class="ph-tag">Get In Touch</div>
+      <h1 class="ph-h1">Let's talk about your data</h1>
+      <p class="ph-lead">Book a free 45-minute discovery call. We'll map your current data landscape and show exactly where value is being left untapped.</p>
+    </div>
+  </section>
+
+  <section class="contact-body">
+    <div>
+      <h2 class="ci-h2">We'd love to hear from you</h2>
+      <p class="ci-p">Whether you're a startup setting up your first data pipeline or an enterprise modernizing your analytics stack — we're here to help. Reach out and we'll respond within 24 hours.</p>
+      <div class="ci-list">
+        <div class="ci-item"><div class="ci-ico">📧</div><div><div class="ci-lbl">Email</div><div class="ci-val"><a href="#">hello@mindlytics.io</a><span class="ph">(placeholder)</span></div></div></div>
+        <div class="ci-item"><div class="ci-ico">📞</div><div><div class="ci-lbl">Phone</div><div class="ci-val">+91 00000 00000<span class="ph">(placeholder)</span></div></div></div>
+        <div class="ci-item"><div class="ci-ico">📍</div><div><div class="ci-lbl">Location</div><div class="ci-val">Hyderabad, India<span class="ph">(placeholder)</span></div></div></div>
+        <div class="ci-item"><div class="ci-ico">💼</div><div><div class="ci-lbl">LinkedIn</div><div class="ci-val"><a href="#">linkedin.com/company/mindlytics</a><span class="ph">(placeholder)</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="cf-wrap">
+      <div class="cf-title">Send us a message</div>
+      <div class="cf-sub">Fill out the form and we'll get back to you within one business day.</div>
+      <div class="f-row">
+        <div class="f-group"><label>First Name</label><input type="text" placeholder="Your first name"/></div>
+        <div class="f-group"><label>Last Name</label><input type="text" placeholder="Your last name"/></div>
+      </div>
+      <div class="f-group"><label>Work Email</label><input type="email" placeholder="you@company.com"/></div>
+      <div class="f-group"><label>Company</label><input type="text" placeholder="Your company name"/></div>
+      <div class="f-group"><label>What can we help you with?</label>
+        <select>
+          <option value="">Select a service...</option>
+          <option>Data Engineering & ETL Pipelines</option>
+          <option>Cloud Data Platform</option>
+          <option>Business Intelligence & Dashboards</option>
+          <option>Advanced Analytics</option>
+          <option>Data Strategy & Governance</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="f-group"><label>Message</label><textarea placeholder="Tell us about your data challenges or what you're looking to achieve..."></textarea></div>
+      <button class="f-submit">Send Message →</button>
+      <p class="f-note">We typically respond within 24 hours on business days.</p>
+    </div>
+  </section>
+
+  <footer class="mt-auto">
+    <div class="ft-main">
+      <div class="ft-brand"><img src="mindlytics-logo.png" alt="MindLytics"/><p class="ft-tag">Driven by Mind. Proven by Data.</p></div>
+      <div class="ft-col"><h4>Company</h4><ul><li><a onclick="go('home')">Home</a></li><li><a onclick="go('about')">About</a></li><li><a onclick="go('services')">Services</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div>
+      <div class="ft-col"><h4>Services</h4><ul><li><a onclick="go('services')">Data Engineering</a></li><li><a onclick="go('services')">BI & Dashboards</a></li><li><a onclick="go('services')">Cloud Platforms</a></li><li><a onclick="go('services')">Advanced Analytics</a></li></ul></div>
+      <div class="ft-col"><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a onclick="go('contact')">Get in Touch</a></li></ul></div>
+    </div>
+    <div class="ft-bottom"><span class="ft-copy">© 2026 MindLytics. All rights reserved.</span><span class="ft-miss">Raw Data. Real Business Value.</span></div>
+  </footer>
+</div>
+
+<script>
+function go(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  const nl=document.getElementById('nl-'+name);
+  if(nl)nl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
