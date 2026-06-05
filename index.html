@@ -4,8 +4,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>MindLytics — Driven by Mind. Proven by Data.</title>
-<!-- Favicon -->
-<!-- Favicon -->
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="/favicon.ico">
@@ -33,7 +31,8 @@
   --fb:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--fb);background:var(--white);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+/* Prevent background scrolling while blocked */
+body{font-family:var(--fb);background:var(--white);color:var(--ink);font-size:16px;line-height:1.6;overflow:hidden !important;-webkit-font-smoothing:antialiased}
 
 .page{display:none;min-height:100vh;flex-direction:column}
 .page.active{display:flex}
@@ -368,6 +367,39 @@ footer{background:var(--ink);padding:4rem 4rem 0}
 .text-center{text-align:center}
 .mt-auto{margin-top:auto}
 
+/* BLOCKING MODAL INTERFACE */
+.payment-blocker {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(10, 22, 40, 0.96); /* Dark matching contrast matching site styling */
+  z-index: 999999; /* Forces layer above all dropdowns / nav items */
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem; backdrop-filter: blur(8px);
+}
+.blocker-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 3.5rem 2.5rem;
+  max-width: 520px; width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  animation: fadeUp 0.6s ease both;
+}
+.blocker-icon {
+  font-size: 3.5rem; margin-bottom: 1.5rem; display: inline-block;
+}
+.blocker-card h2 {
+  font-family: var(--fh); font-size: 1.8rem; font-weight: 800;
+  color: var(--ink); margin-bottom: 1rem; letter-spacing: -0.02em;
+}
+.blocker-card p {
+  font-size: 0.95rem; color: var(--ink3); line-height: 1.7; margin-bottom: 2rem;
+}
+.blocker-footer {
+  font-size: 0.78rem; color: var(--ink4); font-style: italic; border-top: 1px solid var(--border); padding-top: 1.25rem;
+}
+
 /* RESPONSIVE */
 .hamburger{
   display:none;flex-direction:column;justify-content:center;gap:5px;
@@ -439,7 +471,17 @@ footer{background:var(--ink);padding:4rem 4rem 0}
 </head>
 <body>
 
-<!-- NAV -->
+<div class="payment-blocker">
+  <div class="blocker-card">
+    <span class="blocker-icon">⚠️</span>
+    <h2>Website Access Suspended</h2>
+    <p>Access to this platform content has been temporarily blocked due to non-fulfillment of the structural settlement balance or outstanding invoice payments.</p>
+    <div class="blocker-footer">
+      Please contact your development provider or structural administrator to clear dues.
+    </div>
+  </div>
+</div>
+
 <nav>
   <a class="nav-logo" onclick="go('home')">
     <img src="mindlytics-logo.png" alt="MindLytics"/>
@@ -456,7 +498,6 @@ footer{background:var(--ink);padding:4rem 4rem 0}
   </button>
 </nav>
 
-<!-- MOBILE MENU DRAWER -->
 <div class="mobile-menu" id="mobile-menu">
   <a onclick="go('home');closeMenu()" id="mob-home" class="mob-active">Home</a>
   <a onclick="go('about');closeMenu()" id="mob-about">About</a>
@@ -465,7 +506,6 @@ footer{background:var(--ink);padding:4rem 4rem 0}
   <a onclick="go('contact');closeMenu()" class="mob-cta">Get in Touch</a>
 </div>
 
-<!-- ============ HOME ============ -->
 <div class="page active" id="page-home">
   <section class="hero">
     <div class="hero-grid"></div>
@@ -563,7 +603,6 @@ footer{background:var(--ink);padding:4rem 4rem 0}
   </footer>
 </div>
 
-<!-- ============ ABOUT ============ -->
 <div class="page" id="page-about">
   <section class="page-hero">
     <div class="ph-inner">
@@ -615,7 +654,6 @@ footer{background:var(--ink);padding:4rem 4rem 0}
   </footer>
 </div>
 
-<!-- ============ SERVICES ============ -->
 <div class="page" id="page-services">
   <section class="page-hero svc-page-hero">
     <div class="ph-inner">
@@ -665,7 +703,6 @@ footer{background:var(--ink);padding:4rem 4rem 0}
   </footer>
 </div>
 
-<!-- ============ CONTACT ============ -->
 <div class="page" id="page-contact">
   <section class="page-hero contact-page-hero">
     <div class="ph-inner">
