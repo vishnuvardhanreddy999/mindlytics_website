@@ -32,7 +32,7 @@
 }
 html{scroll-behavior:smooth}
 /* Prevent background scrolling while blocked */
-body{font-family:var(--fb);background:var(--white);color:var(--ink);font-size:16px;line-height:1.6;overflow:hidden !important;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fb);background:var(--white);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 
 .page{display:none;min-height:100vh;flex-direction:column}
 .page.active{display:flex}
@@ -137,14 +137,6 @@ nav{
 .hs-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--blue),var(--blue-light))}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-/* TRUSTED */
-.trusted{
-  background:var(--surface);border-bottom:1px solid var(--border);
-  padding:1.5rem 4rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;
-}
-.t-label{font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink4);white-space:nowrap}
-.t-logos{display:flex;gap:2.5rem;flex-wrap:wrap;align-items:center;flex:1}
-.t-logo{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:var(--ink4);letter-spacing:0.04em;text-transform:uppercase;opacity:0.45}
 
 /* HIGHLIGHTS */
 .highlights{padding:6rem 4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
@@ -367,38 +359,37 @@ footer{background:var(--ink);padding:4rem 4rem 0}
 .text-center{text-align:center}
 .mt-auto{margin-top:auto}
 
-/* BLOCKING MODAL INTERFACE */
-.payment-blocker {
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: rgba(10, 22, 40, 0.96); /* Dark matching contrast matching site styling */
-  z-index: 999999; /* Forces layer above all dropdowns / nav items */
-  display: flex; align-items: center; justify-content: center;
-  padding: 2rem; backdrop-filter: blur(8px);
+
+/* RECOGNITION SECTION */
+.recognition-section{
+  padding:5rem 4rem;background:var(--white);border-top:1px solid var(--border);
+  text-align:center;
 }
-.blocker-card {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 3.5rem 2.5rem;
-  max-width: 520px; width: 100%;
-  text-align: center;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--border);
-  animation: fadeUp 0.6s ease both;
+.rec-inner{
+  max-width:800px;margin:0 auto;
 }
-.blocker-icon {
-  font-size: 3.5rem; margin-bottom: 1.5rem; display: inline-block;
+.rec-badge{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:var(--blue-subtle);border:1px solid var(--border2);
+  border-radius:100px;padding:0.4rem 1.1rem;
+  font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:1.5rem;
 }
-.blocker-card h2 {
-  font-family: var(--fh); font-size: 1.8rem; font-weight: 800;
-  color: var(--ink); margin-bottom: 1rem; letter-spacing: -0.02em;
+.rec-h2{font-family:var(--fh);font-size:1.9rem;font-weight:800;color:var(--ink);letter-spacing:-0.03em;margin-bottom:0.75rem}
+.rec-p{font-size:0.9rem;color:var(--ink3);line-height:1.8;max-width:520px;margin:0 auto 2.5rem;font-weight:300}
+.cert-frame{
+  border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  box-shadow:0 12px 48px rgba(27,79,216,0.1);display:inline-block;
+  transition:transform 0.3s,box-shadow 0.3s;max-width:700px;width:100%;
 }
-.blocker-card p {
-  font-size: 0.95rem; color: var(--ink3); line-height: 1.7; margin-bottom: 2rem;
+.cert-frame:hover{transform:translateY(-4px);box-shadow:0 20px 64px rgba(27,79,216,0.15)}
+.cert-frame img{width:100%;height:auto;display:block}
+.cert-meta{
+  display:flex;justify-content:center;gap:3rem;margin-top:2rem;flex-wrap:wrap;
 }
-.blocker-footer {
-  font-size: 0.78rem; color: var(--ink4); font-style: italic; border-top: 1px solid var(--border); padding-top: 1.25rem;
-}
+.cert-stat{text-align:center}
+.cert-stat-val{font-family:var(--fh);font-size:1rem;font-weight:800;color:var(--ink);letter-spacing:-0.01em}
+.cert-stat-lbl{font-size:0.72rem;color:var(--ink4);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;margin-top:0.15rem}
 
 /* RESPONSIVE */
 .hamburger{
@@ -444,7 +435,7 @@ footer{background:var(--ink);padding:4rem 4rem 0}
   .hero{padding-top:6rem}
   .hero-right{grid-template-columns:1fr 1fr}
   .highlights,.svc-grid{grid-template-columns:1fr;padding:4rem 1.5rem}
-  .svc-main,.process-band,.team-section,.stats{padding:4rem 1.5rem}
+  .svc-main,.process-band,.team-section,.stats,.recognition-section{padding:4rem 1.5rem}
   .stats{grid-template-columns:1fr 1fr;gap:2rem}
   .sc{border-left:none;padding-left:0;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
   .proc-steps{grid-template-columns:1fr 1fr;gap:2rem}
@@ -453,7 +444,6 @@ footer{background:var(--ink);padding:4rem 4rem 0}
   .ft-main{grid-template-columns:1fr 1fr;padding:3rem 0;gap:2rem}
   footer{padding:3rem 1.5rem 0}
   .ft-bottom{padding:1.5rem 0;flex-direction:column;text-align:center}
-  .trusted{padding:1.25rem 1.5rem}
   .page-hero{padding:6rem 1.5rem 4rem}
   .cf-wrap{padding:1.75rem}
   .f-row{grid-template-columns:1fr}
@@ -471,16 +461,6 @@ footer{background:var(--ink);padding:4rem 4rem 0}
 </head>
 <body>
 
-<div class="payment-blocker">
-  <div class="blocker-card">
-    <span class="blocker-icon">⚠️</span>
-    <h2>Website Access Suspended</h2>
-    <p>Access to this platform content has been temporarily blocked due to non-fulfillment of the structural settlement balance or outstanding invoice payments.</p>
-    <div class="blocker-footer">
-      Please contact your development provider or structural administrator to clear dues.
-    </div>
-  </div>
-</div>
 
 <nav>
   <a class="nav-logo" onclick="go('home')">
@@ -544,14 +524,6 @@ footer{background:var(--ink);padding:4rem 4rem 0}
     </div>
   </section>
 
-  <div class="trusted">
-    <span class="t-label">Trusted by</span>
-    <div class="t-logos">
-      <span class="t-logo">FinCore</span><span class="t-logo">LogiShift</span>
-      <span class="t-logo">Elevate</span><span class="t-logo">DataNova</span>
-      <span class="t-logo">NexaCloud</span><span class="t-logo">PulseBI</span>
-    </div>
-  </div>
 
   <section class="highlights">
     <div class="hl">
@@ -640,6 +612,23 @@ footer{background:var(--ink);padding:4rem 4rem 0}
   
       <div class="tc"><div class="tc-av">MR</div><div class="tc-name">Mayur Reddy</div><div class="tc-role">Lead Analytics Architect</div></div>
 
+    </div>
+  </section>
+
+  <section class="recognition-section">
+    <div class="rec-inner">
+      <div class="rec-badge">🏛️ Government of India · DPIIT Recognised</div>
+      <h2 class="rec-h2">Officially Recognised by Startup India</h2>
+      <p class="rec-p">MindLytics Pvt Ltd is recognised as a startup by the Department for Promotion of Industry and Internal Trade (DPIIT), Ministry of Commerce & Industry, Government of India.</p>
+      <div class="cert-frame">
+        <img src="dpiit-certificate.jpg" alt="DPIIT Certificate of Recognition — MindLytics Private Limited, Certificate No. DIPP265703"/>
+      </div>
+      <div class="cert-meta">
+        <div class="cert-stat"><div class="cert-stat-val">DIPP265703</div><div class="cert-stat-lbl">Certificate No.</div></div>
+        <div class="cert-stat"><div class="cert-stat-val">05-06-2026</div><div class="cert-stat-lbl">Date of Issue</div></div>
+        <div class="cert-stat"><div class="cert-stat-val">Analytics & Data Science</div><div class="cert-stat-lbl">Recognised Sector</div></div>
+        <div class="cert-stat"><div class="cert-stat-val">01-06-2036</div><div class="cert-stat-lbl">Valid Upto</div></div>
+      </div>
     </div>
   </section>
 
